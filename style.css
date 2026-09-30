@@ -1,13 +1,14 @@
-/* style.css */
+
 :root {
-  --bg-color: #0f172a;
-  --card-bg: #1e293b;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --accent: #38bdf8;
-  --accent-hover: #0284c7;
-  --border-color: #334155;
+  --bg-color: #0B0F19; /* Deep dark */
+  --card-bg: #151C2C;
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --accent: #6366f1; /* Indigo accent */
+  --accent-hover: #818cf8;
+  --border-color: #1E293B;
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --gradient-card: linear-gradient(145deg, #151C2C 0%, #0F172A 100%);
 }
 
 * {
@@ -40,24 +41,70 @@ a:hover {
 }
 
 header {
-  background-color: var(--card-bg);
+  background-color: rgba(21, 28, 44, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-color);
   padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-header .container {
+.header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-header nav a {
-  margin-left: 1rem;
+.logo-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
-header nav a:hover {
+.logo-badge svg {
   color: var(--accent);
+}
+
+.logo-badge:hover {
+  color: var(--text-primary);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.main-nav a {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.main-nav a:hover {
+  color: var(--text-primary);
+}
+
+.github-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #24292e;
+  color: #fff !important;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.github-btn:hover {
+  background-color: #2f363d;
 }
 
 main {
@@ -69,12 +116,13 @@ h1, h2, h3 {
 }
 
 .card {
-  background-color: var(--card-bg);
+  background: var(--gradient-card);
   border: 1px solid var(--border-color);
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   padding: 1.5rem;
   margin-bottom: 2rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .tool-grid {
@@ -83,11 +131,29 @@ h1, h2, h3 {
   gap: 1.5rem;
 }
 
-.tool-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+.tool-card {
+  display: block;
 }
 
+.tool-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  border-color: var(--accent);
+}
+
+.icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  background-color: rgba(99, 102, 241, 0.1);
+  color: var(--accent);
+}
+
+/* Rest of the original CSS preserved below */
 .ad-slot-placeholder {
   min-height: 120px;
   background-color: rgba(255, 255, 255, 0.05);
@@ -199,19 +265,23 @@ footer nav a {
   font-size: 0.875rem;
 }
 
-@media (max-width: 640px) {
-  .container {
-    padding: 0 1.25rem;
-  }
-  header .container {
+
+@media (max-width: 860px) {
+  .header-container {
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1rem;
     text-align: center;
   }
-  header nav a {
-    margin: 0 0.5rem;
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .container {
+    padding: 0 1.25rem;
   }
   .flex-row {
     flex-direction: column;
   }
 }
+
