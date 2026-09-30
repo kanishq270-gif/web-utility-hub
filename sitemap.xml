@@ -1,53 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://webutilityhub.netlify.app/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://web-utility-hub.netlify.app/</loc>
   </url>
   <url>
-    <loc>https://webutilityhub.netlify.app/about.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://web-utility-hub.netlify.app/tools/image-compressor-target/</loc>
   </url>
   <url>
-    <loc>https://webutilityhub.netlify.app/contact.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://web-utility-hub.netlify.app/tools/box-shadow/</loc>
   </url>
   <url>
-    <loc>https://webutilityhub.netlify.app/privacy-policy.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://web-utility-hub.netlify.app/tools/json-formatter/</loc>
   </url>
   <url>
-    <loc>https://webutilityhub.netlify.app/terms.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://web-utility-hub.netlify.app/tools/hourly-rate/</loc>
   </url>
   <url>
-    <loc>https://webutilityhub.netlify.app/tools/freelance-hourly-rate/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://webutilityhub.netlify.app/tools/image-compressor-target/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://webutilityhub.netlify.app/tools/json-formatter-validator/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://webutilityhub.netlify.app/tools/margin-markup-calculator/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://webutilityhub.netlify.app/tools/css-box-shadow-generator/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://web-utility-hub.netlify.app/tools/margin-calculator/</loc>
   </url>
 </urlset>
