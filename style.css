@@ -413,3 +413,44 @@ footer nav a {
   background-color: #1e293b;
   border-color: var(--accent);
 }
+
+.floating-bmc-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #151C2C;
+  color: #f8fafc !important;
+  padding: 0.6rem 1.2rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.floating-bmc-btn:hover {
+  background-color: #1e293b;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.inline-support-card {
+  margin-top: 2rem;
+  padding: 1.25rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+.inline-support-card a {
+  color: var(--accent);
+  text-decoration: underline;
+  font-weight: 600;
+}
