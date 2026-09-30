@@ -162,27 +162,9 @@ h1, h2, h3 {
   gap: 1.5rem;
 }
 
-.tool-card {
-  display: block;
-}
 
-.tool-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-  border-color: var(--accent);
-}
 
-.icon-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  margin-bottom: 1rem;
-  background-color: rgba(99, 102, 241, 0.1);
-  color: var(--accent);
-}
+
 
 /* Rest of the original CSS preserved below */
 .ad-slot-placeholder {
@@ -316,3 +298,79 @@ footer nav a {
   }
 }
 
+
+
+.tool-card {
+  display: flex;
+  flex-direction: column;
+  background: #161e2e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+}
+
+.tool-card h2 {
+  color: #f8fafc;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.tool-card p {
+  color: #94a3b8;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.tool-link-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+}
+
+.icon-badge svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* Unique Themes */
+/* Hourly Rate */
+.card-hourly .icon-badge { background-color: rgba(16, 185, 129, 0.15); color: #34d399; }
+.card-hourly .tool-link-text { color: #34d399; }
+.card-hourly:hover { border-color: rgba(16, 185, 129, 0.3); transform: translateY(-5px); box-shadow: 0 20px 30px -10px rgba(0,0,0,0.5); }
+
+/* Compressor */
+.card-compressor .icon-badge { background-color: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+.card-compressor .tool-link-text { color: #fbbf24; }
+.card-compressor:hover { border-color: rgba(245, 158, 11, 0.3); transform: translateY(-5px); box-shadow: 0 20px 30px -10px rgba(0,0,0,0.5); }
+
+/* JSON Formatter */
+.card-json .icon-badge { background-color: rgba(14, 165, 233, 0.15); color: #38bdf8; }
+.card-json .tool-link-text { color: #38bdf8; }
+.card-json:hover { border-color: rgba(14, 165, 233, 0.3); transform: translateY(-5px); box-shadow: 0 20px 30px -10px rgba(0,0,0,0.5); }
+
+/* Margin & Markup */
+.card-margin .icon-badge { background-color: rgba(139, 92, 246, 0.15); color: #a78bfa; }
+.card-margin .tool-link-text { color: #a78bfa; }
+.card-margin:hover { border-color: rgba(139, 92, 246, 0.3); transform: translateY(-5px); box-shadow: 0 20px 30px -10px rgba(0,0,0,0.5); }
+
+/* CSS Box Shadow */
+.card-shadow .icon-badge { background-color: rgba(244, 63, 94, 0.15); color: #fb7185; }
+.card-shadow .tool-link-text { color: #fb7185; }
+.card-shadow:hover { border-color: rgba(244, 63, 94, 0.3); transform: translateY(-5px); box-shadow: 0 20px 30px -10px rgba(0,0,0,0.5); }
