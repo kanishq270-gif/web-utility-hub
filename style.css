@@ -394,3 +394,22 @@ footer nav a {
   margin-top: 4rem;
   margin-bottom: 4rem;
 }
+
+.bmc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #151C2C;
+  color: #f8fafc !important;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.2s ease;
+}
+
+.bmc-btn:hover {
+  background-color: #1e293b;
+  border-color: var(--accent);
+}
