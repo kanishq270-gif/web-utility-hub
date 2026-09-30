@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelance Hourly Rate Calculator | Web Utility Hub</title>
+    <meta name="description" content="Calculate your ideal freelance hourly and day rate based on your expenses, taxes, and income goals.">
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../../index.html" style="font-size: 1.5rem; font-weight: bold;">Web Utility Hub</a>
+            <nav>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <h1>Freelance Hourly Rate Calculator</h1>
+            <p>Determine exactly what you should charge per hour and per day to meet your annual income goals.</p>
+            
+            <div class="flex-row" style="margin-top: 2rem;">
+                <div class="flex-col">
+                    <div class="input-group">
+                        <label for="netSalary">Desired Annual Net Salary ($)</label>
+                        <input type="number" id="netSalary" value="75000">
+                    </div>
+                    <div class="input-group">
+                        <label for="expenses">Annual Overhead/Expenses ($)</label>
+                        <input type="number" id="expenses" value="5000">
+                    </div>
+                    <div class="input-group">
+                        <label for="taxRate">Estimated Tax Rate (%)</label>
+                        <input type="number" id="taxRate" value="25" min="0" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="weeksOff">Paid Weeks Off Per Year</label>
+                        <input type="number" id="weeksOff" value="4" min="0" max="52">
+                    </div>
+                    <div class="input-group">
+                        <label for="hoursPerWeek">Billable Hours Per Week</label>
+                        <input type="number" id="hoursPerWeek" value="25" min="1" max="168">
+                    </div>
+                </div>
+                
+                <div class="flex-col">
+                    <div class="card" style="background-color: var(--bg-color); height: 100%;">
+                        <h3>Your Rates</h3>
+                        <div style="margin: 1.5rem 0;">
+                            <p style="color: var(--text-secondary); font-size: 0.875rem;">Minimum Hourly Rate</p>
+                            <div style="font-size: 2.5rem; font-weight: bold; color: var(--accent);" id="hourlyRateOut">$0.00</div>
+                        </div>
+                        <div style="margin: 1.5rem 0;">
+                            <p style="color: var(--text-secondary); font-size: 0.875rem;">Equivalent Day Rate (8h)</p>
+                            <div style="font-size: 2rem; font-weight: bold;" id="dayRateOut">$0.00</div>
+                        </div>
+                        <div style="margin: 1.5rem 0;">
+                            <p style="color: var(--text-secondary); font-size: 0.875rem;">Monthly Gross Target</p>
+                            <div style="font-size: 1.5rem; font-weight: bold;" id="monthlyGrossOut">$0.00</div>
+                        </div>
+                        <button id="copyBtn" style="width: 100%; margin-top: 1rem;">Copy Result</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ad-slot-placeholder">
+            Advertisement Space (AdSense compliant slot)
+        </div>
+
+        <article class="content-section card">
+            <h2>How to Calculate Your Freelance Hourly Rate</h2>
+            <p>Setting your freelance rate is one of the most critical steps in establishing a sustainable independent business. Many beginners make the mistake of simply taking a traditional full-time salary and dividing it by 2,080 (the number of working hours in a standard year). This approach is flawed because it ignores overhead costs, taxes, unbillable time, and time off.</p>
+            
+            <h3>How the Calculation Works</h3>
+            <p>Our calculator uses a reverse-engineering approach to find your true required rate:</p>
+            <ol>
+                <li><strong>Gross Income Required:</strong> First, we determine how much you need to earn <em>before</em> taxes to take home your Desired Annual Net Salary. Formula: <code>Net Salary / (1 - Tax Rate)</code>.</li>
+                <li><strong>Total Revenue Target:</strong> We then add your Annual Overhead/Expenses to the Gross Income Required. This is your total revenue target for the year.</li>
+                <li><strong>Billable Hours:</strong> We calculate the actual number of hours you will be paid for over the year. We start with 52 weeks, subtract your Paid Weeks Off, and multiply the result by your Billable Hours Per Week. Remember, as a freelancer, you spend significant time on admin, marketing, and sales (unbillable time). A standard full-time week might be 40 hours, but billable hours are typically closer to 20-25.</li>
+                <li><strong>Final Rate:</strong> Finally, we divide your Total Revenue Target by your total annual billable hours to get your Minimum Hourly Rate.</li>
+            </ol>
+            
+            <h3>Step-by-Step Instructions</h3>
+            <ul>
+                <li><strong>Net Salary:</strong> Enter the amount of money you want to take home every year after taxes and business expenses are paid.</li>
+                <li><strong>Expenses:</strong> Include costs like software subscriptions, internet, health insurance, hardware depreciation, accounting fees, and marketing.</li>
+                <li><strong>Tax Rate:</strong> This varies wildly by country and state. A common estimate for US freelancers (including self-employment tax) is 25-30%.</li>
+                <li><strong>Weeks Off:</strong> Include vacation time, sick leave, and public holidays you plan to take off.</li>
+                <li><strong>Billable Hours:</strong> Be realistic. If you plan to work 40 hours a week, estimate that only 25 of those will be direct client work that you can bill for.</li>
+            </ul>
+
+            <h3>Frequently Asked Questions (FAQ)</h3>
+            <div style="margin-top: 1.5rem;">
+                <h4>Why shouldn't I just charge what standard employees make?</h4>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Employees receive hidden benefits (health care, paid time off, employer tax contributions, equipment) that you must pay for yourself as a freelancer. If you charge an employee's hourly rate, you will effectively earn much less after expenses and taxes.</p>
+                
+                <h4>What is a Day Rate?</h4>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">A day rate is a flat fee charged for a full day of work (typically 8 hours). Many freelancers, especially in consulting, production, or design, prefer day rates over hourly rates because it simplifies billing and prevents micromanagement of time.</p>
+                
+                <h4>How do I transition from hourly to value-based pricing?</h4>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Once you establish your minimum hourly rate, you can use it internally to estimate fixed-price projects. For example, if your rate is $100/hr and a project takes 10 hours, you quote $1,000. Eventually, you can quote based on the value delivered to the client rather than the time spent, which is highly recommended for scaling your business.</p>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <nav>
+                <a href="../../index.html">Home</a>
+                <a href="../../privacy-policy.html">Privacy Policy</a>
+                <a href="../../terms.html">Terms of Service</a>
+            </nav>
+            <p>&copy; 2026 Web Utility Hub.</p>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>

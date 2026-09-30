@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter & Validator | Web Utility Hub</title>
+    <meta name="description" content="A fast, client-side tool to validate, minify, and beautify JSON code.">
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../../index.html" style="font-size: 1.5rem; font-weight: bold;">Web Utility Hub</a>
+            <nav>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <h1>JSON Formatter & Validator</h1>
+            <p>Paste your JSON below to validate its syntax, beautify it with proper indentation, or minify it to save space.</p>
+            
+            <div id="errorBanner" style="display: none; background-color: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; padding: 1rem; margin: 1rem 0; border-radius: 0 0.5rem 0.5rem 0;">
+                <strong style="color: #ef4444;">Invalid JSON:</strong>
+                <span id="errorMessage" style="color: var(--text-primary); margin-left: 0.5rem;"></span>
+            </div>
+
+            <div style="margin-top: 1rem;">
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+                    <button id="btnSample" style="background-color: var(--border-color); color: var(--text-primary);">Load Sample</button>
+                    <button id="btnBeautify2" style="background-color: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary);">Beautify (2 Spaces)</button>
+                    <button id="btnBeautify4" style="background-color: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary);">Beautify (4 Spaces)</button>
+                    <button id="btnMinify" style="background-color: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary);">Minify</button>
+                    <div style="flex-grow: 1;"></div>
+                    <button id="btnCopy" style="background-color: var(--accent);">Copy to Clipboard</button>
+                </div>
+                
+                <textarea id="jsonInput" rows="20" placeholder='{"paste": "your JSON here"}' style="font-family: monospace; font-size: 0.875rem; white-space: pre; overflow-wrap: normal; overflow-x: scroll;"></textarea>
+            </div>
+        </div>
+
+        <div class="ad-slot-placeholder">
+            Advertisement Space (AdSense compliant slot)
+        </div>
+
+        <article class="content-section card">
+            <h2>Understanding JSON Validation and Formatting</h2>
+            <p>JSON (JavaScript Object Notation) is the standard data format for APIs, configuration files, and data storage across modern web development. Because JSON relies on strict syntax rules, even a single missing comma or misplaced quote will cause a server or application to crash. A JSON validator is an essential utility for developers.</p>
+            
+            <h3>How the Tool Works</h3>
+            <p>Our JSON Formatter utilizes the browser's built-in, highly optimized <code>JSON</code> object API. It performs all operations completely on the client side:</p>
+            <ol>
+                <li><strong>Validation:</strong> We pass your string through <code>JSON.parse()</code>. If the syntax is valid, it converts the text into a native JavaScript object. If it is invalid, it throws an error. We catch this error and display the exact reason (e.g., "Unexpected token } in JSON at position 125") in the red error banner.</li>
+                <li><strong>Beautification:</strong> Once parsed into an object, we use <code>JSON.stringify(object, null, spaces)</code> to reconstruct the string. The third parameter allows us to apply standard 2-space or 4-space indentation, making nested structures readable for humans.</li>
+                <li><strong>Minification:</strong> To minify, we use <code>JSON.stringify(object)</code> without spacing parameters. This strips all unnecessary whitespace and line breaks, producing the smallest possible file size for transmission over a network.</li>
+            </ol>
+            
+            <h3>Frequently Asked Questions (FAQ)</h3>
+            <div style="margin-top: 1.5rem;">
+                <h4>Why do I get a "Trailing Comma" error?</h4>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Unlike standard JavaScript or Python arrays/objects, strict JSON syntax does not allow a comma after the final item in a list or dictionary. For example, <code>{"a": 1, "b": 2,}</code> is invalid JSON.</p>
+                
+                <h4>Can I format very large JSON files?</h4>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Yes, you can paste megabytes of JSON data into the tool. Because it relies on the V8/SpiderMonkey browser engines, parsing is incredibly fast. However, very large strings might cause the browser textarea UI to lag temporarily while rendering.</p>
+                
+                <h4>Is my sensitive API data secure?</h4>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Absolutely. The code never leaves your browser window. There is no backend server involved, meaning no API keys or PII (Personally Identifiable Information) can be intercepted or logged.</p>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <nav>
+                <a href="../../index.html">Home</a>
+                <a href="../../privacy-policy.html">Privacy Policy</a>
+                <a href="../../terms.html">Terms of Service</a>
+            </nav>
+            <p>&copy; 2026 Web Utility Hub.</p>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>

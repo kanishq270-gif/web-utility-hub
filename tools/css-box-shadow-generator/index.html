@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Box Shadow Generator | Web Utility Hub</title>
+    <meta name="description" content="Visually generate beautiful CSS box shadows and copy the code instantly.">
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        .preview-area {
+            background-color: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            /* Create a checkered background for contrast testing */
+            background-image: linear-gradient(45deg, #1e293b 25%, transparent 25%), 
+                              linear-gradient(-45deg, #1e293b 25%, transparent 25%), 
+                              linear-gradient(45deg, transparent 75%, #1e293b 75%), 
+                              linear-gradient(-45deg, transparent 75%, #1e293b 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+        #previewBox {
+            width: 200px;
+            height: 200px;
+            background-color: #38bdf8;
+            border-radius: 1rem;
+            transition: box-shadow 0.1s;
+        }
+        .controls-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .code-box {
+            background-color: var(--bg-color);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: monospace;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            margin: 1rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../../index.html" style="font-size: 1.5rem; font-weight: bold;">Web Utility Hub</a>
+            <nav>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <h1>CSS Box Shadow Generator</h1>
+            <p>Design stunning shadow effects visually and grab the CSS code instantly.</p>
+            
+            <div class="preview-area">
+                <div id="previewBox"></div>
+            </div>
+
+            <div class="controls-grid">
+                <div>
+                    <div class="input-group">
+                        <label>Horizontal Offset: <span id="hOffsetVal">0</span>px</label>
+                        <input type="range" id="hOffset" min="-50" max="50" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Vertical Offset: <span id="vOffsetVal">10</span>px</label>
+                        <input type="range" id="vOffset" min="-50" max="50" value="10">
+                    </div>
+                    <div class="input-group">
+                        <label>Blur Radius: <span id="blurVal">15</span>px</label>
+                        <input type="range" id="blur" min="0" max="100" value="15">
+                    </div>
+                    <div class="input-group">
+                        <label>Spread Radius: <span id="spreadVal">-3</span>px</label>
+                        <input type="range" id="spread" min="-50" max="50" value="-3">
+                    </div>
+                </div>
+                <div>
+                    <div class="input-group">
+                        <label>Shadow Color</label>
+                        <input type="color" id="shadowColor" value="#000000" style="height: 40px; cursor: pointer;">
+                    </div>
+                    <div class="input-group">
+                        <label>Opacity: <span id="opacityVal">0.3</span></label>
+                        <input type="range" id="opacity" min="0" max="1" step="0.01" value="0.3">
+                    </div>
+                    <div class="input-group">
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" id="insetToggle" style="width: auto; margin-right: 0.5rem; transform: scale(1.5);">
+                            Inset Shadow (Inner)
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <code id="cssCodeOutput">box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.3);</code>
+                <button id="copyBtn">Copy CSS</button>
+            </div>
+        </div>
+        
+        <div class="ad-slot-placeholder">
+            Advertisement Space (AdSense compliant slot)
+        </div>
+
+        <article class="content-section card">
+            <h2>Understanding CSS Box Shadows</h2>
+            <p>The <code>box-shadow</code> CSS property adds shadow effects around an element's frame. It is heavily used in modern web design (like Material Design and flat UI) to create depth, hierarchy, and floating card effects.</p>
+            
+            <h3>How the Property Works</h3>
+            <p>The syntax for box-shadow accepts up to six parameters. Our generator outputs them in this standard order:</p>
+            <ul>
+                <li><strong>Horizontal Offset (x-offset):</strong> Positive values push the shadow to the right. Negative values pull it to the left.</li>
+                <li><strong>Vertical Offset (y-offset):</strong> Positive values push the shadow down. Negative values pull it up.</li>
+                <li><strong>Blur Radius:</strong> Higher values create a softer, more diffused shadow. A value of 0 creates a sharp, solid block of color.</li>
+                <li><strong>Spread Radius:</strong> Positive values expand the shadow outwards, making it larger than the element. Negative values shrink it, which is great for subtle "lifted" card effects.</li>
+                <li><strong>Color:</strong> The shadow's color, converted to <code>rgba()</code> format so opacity can be applied.</li>
+                <li><strong>Inset:</strong> A keyword that changes the shadow from an outer drop-shadow to an inner shadow cast inside the element.</li>
+            </ul>
+            
+            <h3>Tips for Modern Design</h3>
+            <p>To achieve a "premium" or modern look, avoid harsh, dark black shadows with zero spread. Instead, use higher blur values (15px to 30px), negative spread radiuses (-2px to -5px), and low opacity (0.1 to 0.15). This creates a highly realistic, diffused drop shadow that makes elements appear as if they are floating softly above the page.</p>
+
+            <h3>Frequently Asked Questions (FAQ)</h3>
+            <div style="margin-top: 1.5rem;">
+                <h4>Are box shadows bad for web performance?</h4>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Excessive use of box-shadows with very high blur radiuses can impact scrolling performance on lower-end mobile devices because the browser has to calculate the blur continuously. Use them on interactive elements (like hovering over a card) rather than on every single DOM element.</p>
+                
+                <h4>Can I add multiple shadows to one element?</h4>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Yes! You can chain multiple shadows by separating them with commas (e.g., <code>box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);</code>). This generator currently focuses on generating perfect single shadows, but you can copy multiple rules and combine them in your stylesheet.</p>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <nav>
+                <a href="../../index.html">Home</a>
+                <a href="../../privacy-policy.html">Privacy Policy</a>
+                <a href="../../terms.html">Terms of Service</a>
+            </nav>
+            <p>&copy; 2026 Web Utility Hub.</p>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client-Side Image Compressor | Web Utility Hub</title>
+    <meta name="description" content="Compress images (PNG, JPG, WebP) directly in your browser without uploading to a server. Target specific file sizes like 50KB or 100KB.">
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        .drop-zone {
+            border: 2px dashed var(--border-color);
+            border-radius: 1rem;
+            padding: 3rem;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+        .drop-zone.dragover {
+            border-color: var(--accent);
+            background-color: rgba(56, 189, 248, 0.05);
+        }
+        .preview-container {
+            display: none;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .preview-img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../../index.html" style="font-size: 1.5rem; font-weight: bold;">Web Utility Hub</a>
+            <nav>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <h1>Image Compressor</h1>
+            <p>100% private, client-side image compression. Your files never leave your device.</p>
+            
+            <div style="margin: 2rem 0;">
+                <div class="input-group">
+                    <label>Target Size:</label>
+                    <div style="display: flex; gap: 1rem;">
+                        <label><input type="radio" name="targetSize" value="50"> 50KB</label>
+                        <label><input type="radio" name="targetSize" value="100"> 100KB</label>
+                        <label><input type="radio" name="targetSize" value="custom" checked> Custom Quality</label>
+                    </div>
+                </div>
+                
+                <div class="input-group" id="qualitySliderGroup">
+                    <label>Custom Quality (1-100%): <span id="qualityVal">80</span>%</label>
+                    <input type="range" id="qualitySlider" min="1" max="100" value="80">
+                </div>
+
+                <div class="drop-zone" id="dropZone">
+                    <p style="font-size: 1.25rem; font-weight: bold;">Drag & Drop an Image Here</p>
+                    <p style="color: var(--text-secondary); margin: 0.5rem 0;">or click to browse</p>
+                    <p style="font-size: 0.875rem; color: var(--text-secondary);">Supports JPG, PNG, WebP</p>
+                    <input type="file" id="fileInput" accept="image/jpeg, image/png, image/webp" style="display: none;">
+                </div>
+
+                <div class="preview-container" id="previewContainer">
+                    <div class="flex-row" style="margin-bottom: 1rem; justify-content: center;">
+                        <div class="card" style="margin: 0; padding: 1rem;">
+                            <p style="color: var(--text-secondary); font-size: 0.875rem;">Original Size</p>
+                            <div style="font-size: 1.5rem; font-weight: bold;" id="originalSize">0 KB</div>
+                        </div>
+                        <div class="card" style="margin: 0; padding: 1rem;">
+                            <p style="color: var(--text-secondary); font-size: 0.875rem;">Compressed Size</p>
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent);" id="compressedSize">0 KB</div>
+                        </div>
+                    </div>
+                    <img id="previewImg" class="preview-img" alt="Compressed Preview">
+                    <div style="margin-top: 1.5rem;">
+                        <a id="downloadBtn" download="compressed_image.jpg" href="#" style="background-color: var(--accent); color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; display: inline-block; font-weight: bold;">Download Image</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ad-slot-placeholder">
+            Advertisement Space (AdSense compliant slot)
+        </div>
+
+        <article class="content-section card">
+            <h2>How Client-Side Image Compression Works</h2>
+            <p>Most online image compressors require you to upload your files to their servers. This uses your bandwidth, takes time, and poses a privacy risk if the images contain sensitive information. Our tool is different: it uses the power of your modern web browser to do the work locally.</p>
+            
+            <h3>The HTML5 Canvas Method</h3>
+            <p>Under the hood, we use the browser's native <code>HTML5 Canvas</code> API. Here is the step-by-step process:</p>
+            <ol>
+                <li><strong>Local Read:</strong> When you select a file, JavaScript reads it locally into memory as a Data URL using <code>FileReader</code>. No network request is made.</li>
+                <li><strong>Rendering:</strong> The image is drawn onto an invisible, virtual <code>&lt;canvas&gt;</code> element in your browser's memory.</li>
+                <li><strong>Downsampling & Encoding:</strong> We use the <code>canvas.toBlob(callback, mimeType, quality)</code> function. By requesting a 'image/jpeg' or 'image/webp' output and passing a quality parameter (between 0.0 and 1.0), the browser's native image rendering engine compresses the image on the fly.</li>
+                <li><strong>Target Size Iteration:</strong> If you select a target size (like 50KB), our algorithm performs a binary search, repeatedly compressing the image at different quality levels until it finds the optimal quality that fits just under your target size constraint.</li>
+            </ol>
+            
+            <h3>Step-by-Step Instructions</h3>
+            <ul>
+                <li><strong>Select Target:</strong> Choose whether you want to aim for a specific file size (50KB/100KB) for strict upload limits (like avatars or web banners), or use the custom slider to manually balance quality and size.</li>
+                <li><strong>Upload:</strong> Drag and drop a PNG, JPG, or WebP file into the designated area.</li>
+                <li><strong>Review & Download:</strong> The processing happens instantly. Review the side-by-side file size comparison and click Download to save the new file to your computer.</li>
+            </ul>
+
+            <h3>Frequently Asked Questions (FAQ)</h3>
+            <div style="margin-top: 1.5rem;">
+                <h4>Is my image safe and private?</h4>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Yes, 100%. If you disconnect from the internet after loading this page, the compressor will still work perfectly. Your image never leaves your device.</p>
+                
+                <h4>Why did my PNG turn into a JPG?</h4>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">To achieve significant compression, especially for target file sizes under 100KB, the tool converts images to JPEG format. PNG is a lossless format designed for graphics with transparent backgrounds, which makes it very difficult to compress aggressively without destroying the image.</p>
+                
+                <h4>Will I lose image quality?</h4>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Yes. "Lossy" compression (which is required to reduce file sizes dramatically) permanently discards some visual data. However, at higher quality settings (80%+), the human eye usually cannot detect the difference.</p>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <nav>
+                <a href="../../index.html">Home</a>
+                <a href="../../privacy-policy.html">Privacy Policy</a>
+                <a href="../../terms.html">Terms of Service</a>
+            </nav>
+            <p>&copy; 2026 Web Utility Hub.</p>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>

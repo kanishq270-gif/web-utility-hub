@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Utility Hub - Free Developer & Business Tools</title>
+    <meta name="description" content="A collection of fast, client-side tools for developers and freelancers. Including calculators, formatters, and generators.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" style="font-size: 1.5rem; font-weight: bold;">Web Utility Hub</a>
+            <nav>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h1>Free Web Utilities</h1>
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Fast, privacy-respecting client-side tools designed to make your daily tasks easier. No data is sent to our servers.</p>
+            <input type="text" id="searchInput" placeholder="Search tools..." style="max-width: 400px; margin-top: 1.5rem; padding: 1rem; border-radius: 9999px;">
+        </div>
+
+        <div class="tool-grid" id="toolGrid">
+            <a href="tools/freelance-hourly-rate/" class="card tool-card" data-title="freelance hourly rate calculator">
+                <h2>Hourly Rate Calculator</h2>
+                <p>Calculate your ideal freelance hourly and day rate based on expenses, tax, and goals.</p>
+            </a>
+            <a href="tools/image-compressor-target/" class="card tool-card" data-title="image compressor tool">
+                <h2>Image Compressor</h2>
+                <p>Client-side image compression targeting specific file sizes without losing quality.</p>
+            </a>
+            <a href="tools/json-formatter-validator/" class="card tool-card" data-title="json formatter validator">
+                <h2>JSON Formatter</h2>
+                <p>Validate, minify, and beautify JSON strings instantly in your browser.</p>
+            </a>
+            <a href="tools/margin-markup-calculator/" class="card tool-card" data-title="profit margin markup calculator">
+                <h2>Margin & Markup Calculator</h2>
+                <p>Calculate gross profit, margin, and markup percentages easily.</p>
+            </a>
+            <a href="tools/css-box-shadow-generator/" class="card tool-card" data-title="css box shadow generator">
+                <h2>CSS Box Shadow Generator</h2>
+                <p>Design stunning box shadows visually and copy the CSS directly.</p>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </nav>
+            <p>&copy; 2026 Web Utility Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const toolCards = document.querySelectorAll('.tool-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            toolCards.forEach(card => {
+                const title = card.getAttribute('data-title') || '';
+                const text = card.textContent.toLowerCase();
+                if (title.includes(term) || text.includes(term)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

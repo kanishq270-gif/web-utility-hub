@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Web Utility Hub</title>
+    <meta name="description" content="Get in touch with the Web Utility Hub team for feedback or support.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" style="font-size: 1.5rem; font-weight: bold;">Web Utility Hub</a>
+            <nav>
+                <a href="about.html">About</a>
+                <a href="contact.html" style="color: var(--accent);">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="card" style="max-width: 600px; margin: 0 auto;">
+            <h1 style="text-align: center;">Contact Us</h1>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">Have a feature request, bug report, or business inquiry? Let us know.</p>
+            
+            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="contact">
+                <p style="display: none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+                <div class="input-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Your Name">
+                </div>
+                
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="you@example.com">
+                </div>
+                
+                <div class="input-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="How can we help?"></textarea>
+                </div>
+                
+                <button type="submit" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </nav>
+            <p>&copy; 2026 Web Utility Hub. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

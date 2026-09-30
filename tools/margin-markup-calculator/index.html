@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profit Margin & Markup Calculator | Web Utility Hub</title>
+    <meta name="description" content="Instantly calculate gross profit, margin percentage, and markup percentage for your business.">
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../../index.html" style="font-size: 1.5rem; font-weight: bold;">Web Utility Hub</a>
+            <nav>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <h1>Margin & Markup Calculator</h1>
+            <p>Determine your product pricing, gross profit, margin, and markup percentages easily.</p>
+            
+            <div class="flex-row" style="margin-top: 2rem;">
+                <div class="flex-col">
+                    <p style="margin-bottom: 1rem; color: var(--text-secondary);">Enter two values to calculate the rest:</p>
+                    <div class="input-group">
+                        <label for="costPrice">Cost Price ($)</label>
+                        <input type="number" id="costPrice" placeholder="e.g. 50">
+                    </div>
+                    <div class="input-group">
+                        <label for="sellingPrice">Selling Price ($)</label>
+                        <input type="number" id="sellingPrice" placeholder="e.g. 75">
+                    </div>
+                    <div class="input-group">
+                        <label for="marginInput">Desired Margin (%)</label>
+                        <input type="number" id="marginInput" placeholder="e.g. 33.33">
+                    </div>
+                    <button id="resetBtn" style="background-color: transparent; border: 1px solid var(--border-color); color: var(--text-primary); margin-top: 1rem;">Clear Inputs</button>
+                </div>
+                
+                <div class="flex-col">
+                    <div class="card" style="background-color: var(--bg-color); height: 100%;">
+                        <h3>Results</h3>
+                        <div style="margin: 1.5rem 0;">
+                            <p style="color: var(--text-secondary); font-size: 0.875rem;">Gross Profit</p>
+                            <div style="font-size: 2.5rem; font-weight: bold; color: var(--accent);" id="profitOut">$0.00</div>
+                        </div>
+                        <div style="margin: 1.5rem 0;">
+                            <p style="color: var(--text-secondary); font-size: 0.875rem;">Profit Margin</p>
+                            <div style="font-size: 2rem; font-weight: bold;" id="marginOut">0.00%</div>
+                        </div>
+                        <div style="margin: 1.5rem 0;">
+                            <p style="color: var(--text-secondary); font-size: 0.875rem;">Markup</p>
+                            <div style="font-size: 2rem; font-weight: bold;" id="markupOut">0.00%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ad-slot-placeholder">
+            Advertisement Space (AdSense compliant slot)
+        </div>
+
+        <article class="content-section card">
+            <h2>Understanding Margin vs. Markup</h2>
+            <p>One of the most common mistakes in retail and business is confusing profit margin with markup. While both metrics relate to profit, they look at it from different perspectives. Understanding the difference is crucial for accurately pricing your products and forecasting revenue.</p>
+            
+            <h3>How the Calculation Works</h3>
+            <p>Here are the fundamental formulas used in this calculator:</p>
+            <ul>
+                <li><strong>Gross Profit:</strong> The absolute monetary amount you make on a sale. <br><code>Formula: Selling Price - Cost Price</code></li>
+                <li><strong>Profit Margin:</strong> The percentage of the selling price that is profit. It answers the question: "For every dollar of revenue, how much is profit?" <br><code>Formula: (Gross Profit / Selling Price) × 100</code></li>
+                <li><strong>Markup:</strong> The percentage of the cost price that is added to determine the selling price. It answers the question: "How much did we add to the cost?" <br><code>Formula: (Gross Profit / Cost Price) × 100</code></li>
+            </ul>
+            
+            <h3>Step-by-Step Instructions & Use Cases</h3>
+            <p>Our calculator is dynamic. You only need to enter <strong>two</strong> of the three inputs (Cost, Revenue/Selling Price, or Margin) to calculate the rest.</p>
+            <ol>
+                <li><strong>Scenario 1: You know your cost and selling price.</strong> Enter Cost ($50) and Selling Price ($75). The calculator will show your Gross Profit ($25), Margin (33.33%), and Markup (50%).</li>
+                <li><strong>Scenario 2: You know your cost and your target margin.</strong> Enter Cost ($50) and Desired Margin (40%). The calculator will automatically determine that your Selling Price needs to be $83.33 to achieve that margin.</li>
+            </ol>
+
+            <h3>Frequently Asked Questions (FAQ)</h3>
+            <div style="margin-top: 1.5rem;">
+                <h4>Why is Margin always lower than Markup?</h4>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Because margin is divided by the selling price (a larger number), while markup is divided by the cost price (a smaller number). A 100% markup (doubling your cost) only equates to a 50% margin. It is mathematically impossible to have a margin of 100% unless your cost is $0.</p>
+                
+                <h4>Which metric should I use for my business?</h4>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Most financial statements, investors, and accounting software focus on <strong>Profit Margin</strong>. It gives a clearer picture of profitability relative to total sales. However, <strong>Markup</strong> is often used by buyers and pricing strategists when determining the retail price from a wholesale cost.</p>
+                
+                <h4>Can my markup be over 100%?</h4>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Absolutely! If you buy an item for $10 and sell it for $30, your profit is $20. Your markup is 200% ($20 / $10), while your margin is 66.6% ($20 / $30). High markups are common in industries like jewelry, cosmetics, and beverages.</p>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <nav>
+                <a href="../../index.html">Home</a>
+                <a href="../../privacy-policy.html">Privacy Policy</a>
+                <a href="../../terms.html">Terms of Service</a>
+            </nav>
+            <p>&copy; 2026 Web Utility Hub.</p>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>
