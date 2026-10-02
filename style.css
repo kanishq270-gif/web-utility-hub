@@ -79,6 +79,7 @@ header {
   display: inline-block;
 }
 .dropbtn {
+  position: relative; /* Required for the animated border pseudo-element */
   background-color: transparent;
   color: var(--text-secondary);
   font-weight: 500;
@@ -88,6 +89,7 @@ header {
   border-radius: 8px;
   cursor: pointer;
   font-family: inherit;
+  transition: color 0.2s ease;
 }
 .dropdown:hover .dropbtn, .dropbtn:hover {
   color: var(--text-primary);
@@ -144,12 +146,14 @@ header {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-.main-nav a.active {
+.main-nav a.active,
+.dropbtn.active {
   color: var(--text-primary);
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-.main-nav a.active::before {
+.main-nav a.active::before,
+.dropbtn.active::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -502,23 +506,22 @@ footer nav a {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  z-index: 1000;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: #151C2C;
-  color: #f8fafc !important;
-  padding: 0.6rem 1.2rem;
-  border-radius: 9999px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 0.875rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .floating-bmc-btn:hover {
-  background-color: #1e293b;
   border-color: var(--accent);
   transform: translateY(-2px);
 }
@@ -537,4 +540,13 @@ footer nav a {
   color: var(--accent);
   text-decoration: underline;
   font-weight: 600;
+}
+
+
+/* Suppress injected Netlify badge and overlay elements */
+[data-netlify-deploy-id],
+.netlify-badge,
+iframe[src*="netlify"],
+div[class*="netlify"] {
+  display: none !important;
 }

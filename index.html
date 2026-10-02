@@ -188,20 +188,43 @@
     </footer>
 
     <script>
-        const searchInput = document.getElementById('searchInput');
-        const toolCards = document.querySelectorAll('.tool-card');
+        
+// Search filtering
+const searchInput = document.getElementById('searchInput');
+const toolCards = document.querySelectorAll('.tool-card');
 
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            toolCards.forEach(card => {
-                const title = card.getAttribute('data-title') || '';
-                const text = card.textContent.toLowerCase();
-                if (title.includes(term) || text.includes(term)) {
-                    card.style.display = '';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        toolCards.forEach(card => {
+            const title = card.getAttribute('data-title') || '';
+            const text = card.textContent.toLowerCase();
+            card.style.display = (title.includes(term) || text.includes(term)) ? '' : 'none';
+        });
+    });
+}
+
+// Scroll spy: Home <-> Tools toggle
+const homeNavLink = document.querySelector('.main-nav a[href="index.html"]');
+const toolsDropBtn = document.querySelector('.dropbtn');
+const toolGridSection = document.getElementById('toolGrid');
+
+function handleScrollHighlight() {
+    if (!toolGridSection || !homeNavLink || !toolsDropBtn) return;
+    const rect = toolGridSection.getBoundingClientRect();
+    // When the top of the tools section is near or above the upper viewport
+    if (rect.top <= 250) {
+        homeNavLink.classList.remove('active');
+        toolsDropBtn.classList.add('active');
+    } else {
+        toolsDropBtn.classList.remove('active');
+        homeNavLink.classList.add('active');
+    }
+}
+
+window.addEventListener('scroll', handleScrollHighlight, { passive: true });
+handleScrollHighlight();
+
         });
     </script>
 
