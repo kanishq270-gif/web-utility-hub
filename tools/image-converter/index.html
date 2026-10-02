@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG & Image Format Converter | Web Utility Hub</title>
+    <meta name="description" content="Convert between SVG, PNG, WebP, and JPEG locally. 100% Client-Side.">
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        .converter-form {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .file-upload {
+            border: 2px dashed var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 0.5rem;
+            background: var(--bg-color);
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        .file-upload.dragover {
+            border-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+        }
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        .btn-primary {
+            padding: 0.75rem 1.5rem;
+            background: #38bdf8;
+            color: #0f172a;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn-primary:disabled {
+            background: #475569;
+            cursor: not-allowed;
+        }
+        #previewArea {
+            max-width: 100%;
+            overflow: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            background: var(--bg-color);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        #previewImg {
+            max-width: 100%;
+            height: auto;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="../../index.html" class="logo-badge">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                <span>Web Utility Hub</span>
+            </a>
+            <nav class="main-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../tools/freelance-hourly-rate/">Hourly Rate</a>
+                <a href="../../tools/image-compressor-target/">Compressor</a>
+                <a href="../../tools/json-formatter-validator/">JSON</a>
+                <a href="../../tools/image-converter/" class="active">Converter</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            <a href="https://buymeacoffee.com/webutilityhub" target="_blank" rel="noopener noreferrer" class="bmc-btn">☕ Support Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <h1>SVG & Image Format Converter</h1>
+            <p>Convert images securely in your browser. Supports uploading SVG, PNG, WebP, or JPEG.</p>
+            
+            <div class="converter-form">
+                <div class="file-upload" id="dropZone">
+                    <p>Drag & drop image here or click to select</p>
+                    <input type="file" id="fileInput" accept=".svg,.png,.webp,.jpg,.jpeg" style="display: none;">
+                </div>
+
+                <div id="previewArea" style="display: none;">
+                    <img id="previewImg" src="" alt="Preview">
+                    <p id="fileInfo" style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-secondary);"></p>
+                </div>
+
+                <div class="controls">
+                    <div>
+                        <label style="display:block; margin-bottom: 0.5rem;">Target Format</label>
+                        <select id="formatSelect" style="width: 100%; padding: 0.5rem; border-radius: 0.25rem; background: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color);">
+                            <option value="image/png">PNG</option>
+                            <option value="image/jpeg">JPEG</option>
+                            <option value="image/webp">WebP</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display:block; margin-bottom: 0.5rem;">Scale Multiplier</label>
+                        <select id="scaleSelect" style="width: 100%; padding: 0.5rem; border-radius: 0.25rem; background: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color);">
+                            <option value="1">1x</option>
+                            <option value="2">2x</option>
+                            <option value="3">3x</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="btn-primary" id="convertBtn" disabled>Convert & Download</button>
+            </div>
+        </div>
+
+        <div class="inline-support-card">
+            <p>Enjoying this free tool? <a href="https://buymeacoffee.com/webutilityhub" target="_blank" rel="noopener noreferrer">Buy us a coffee ☕</a> to help keep Web Utility Hub fast and ad-free.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <nav>
+                <a href="../../index.html">Home</a>
+                <a href="../../privacy-policy.html">Privacy Policy</a>
+                <a href="../../terms.html">Terms of Service</a>
+            </nav>
+            <p>&copy; 2026 Web Utility Hub.</p>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+
+    <a href="https://buymeacoffee.com/webutilityhub" target="_blank" rel="noopener noreferrer" class="floating-bmc-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+        Support Hub
+    </a>
+</body>
+</html>

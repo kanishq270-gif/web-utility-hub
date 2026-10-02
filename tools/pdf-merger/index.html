@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Merger & Reorder | Web Utility Hub</title>
+    <meta name="description" content="100% Client-Side PDF Merger. Combine and reorder your private PDF documents without them ever leaving your browser.">
+    <link rel="stylesheet" href="../../style.css">
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <style>
+        .drop-zone {
+            border: 2px dashed var(--border-color);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            text-align: center;
+            background: var(--bg-color);
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        .drop-zone.dragover {
+            border-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+        }
+        .file-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            cursor: grab;
+        }
+        .file-item:active {
+            cursor: grabbing;
+        }
+        .remove-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            cursor: pointer;
+        }
+        .merge-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #38bdf8;
+            color: #0f172a;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        .merge-btn:disabled {
+            background: #475569;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="../../index.html" class="logo-badge">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                <span>Web Utility Hub</span>
+            </a>
+            <nav class="main-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../tools/freelance-hourly-rate/">Hourly Rate</a>
+                <a href="../../tools/image-compressor-target/">Compressor</a>
+                <a href="../../tools/json-formatter-validator/">JSON</a>
+                <a href="../../tools/margin-markup-calculator/">Margin</a>
+                <a href="../../tools/css-box-shadow-generator/">Shadows</a>
+                <a href="../../tools/pdf-merger/" class="active">PDF Merger</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            <a href="https://buymeacoffee.com/webutilityhub" target="_blank" rel="noopener noreferrer" class="bmc-btn">☕ Support Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <h1>PDF Merger & Reorder</h1>
+            <p>100% Client-Side. Your private documents never leave your browser.</p>
+            
+            <div class="drop-zone" id="dropZone">
+                <p>Drag & drop PDF files here, or click to select</p>
+                <input type="file" id="fileInput" multiple accept=".pdf" style="display: none;">
+            </div>
+
+            <ul class="file-list" id="fileList"></ul>
+
+            <button class="merge-btn" id="mergeBtn" disabled>Merge & Download</button>
+            <p id="statusMsg" style="text-align: center; margin-top: 1rem; color: #10b981;"></p>
+        </div>
+
+        <div class="inline-support-card">
+            <p>Enjoying this free tool? <a href="https://buymeacoffee.com/webutilityhub" target="_blank" rel="noopener noreferrer">Buy us a coffee ☕</a> to help keep Web Utility Hub fast and ad-free.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <nav>
+                <a href="../../index.html">Home</a>
+                <a href="../../privacy-policy.html">Privacy Policy</a>
+                <a href="../../terms.html">Terms of Service</a>
+            </nav>
+            <p>&copy; 2026 Web Utility Hub.</p>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+
+    <a href="https://buymeacoffee.com/webutilityhub" target="_blank" rel="noopener noreferrer" class="floating-bmc-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+        Support Hub
+    </a>
+</body>
+</html>
