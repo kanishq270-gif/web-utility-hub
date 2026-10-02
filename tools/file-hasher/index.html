@@ -3,80 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WCAG Color Contrast Checker | Web Utility Hub</title>
-    <meta name="description" content="Calculate WCAG contrast ratio between foreground and background colors to ensure web accessibility compliance.">
+    <title>File Checksum / Hasher | Web Utility Hub</title>
+    <meta name="description" content="Calculate SHA-256 and SHA-512 hashes for any file locally in your browser. 100% client-side.">
     <link rel="stylesheet" href="../../style.css">
     <style>
-        .contrast-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+        .hasher-container {
             margin-bottom: 2rem;
         }
-        @media (max-width: 768px) {
-            .contrast-container {
-                grid-template-columns: 1fr;
-            }
+        .file-upload {
+            border: 2px dashed var(--border-color);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-radius: 0.5rem;
+            background: var(--bg-color);
+            cursor: pointer;
+            transition: border-color 0.3s, background 0.3s;
+            margin-bottom: 2rem;
         }
-        .color-picker {
+        .file-upload.dragover {
+            border-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+        }
+        .hash-result {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 1rem;
         }
-        .color-picker input[type="color"] {
-            width: 50px;
-            height: 50px;
-            padding: 0;
+        .hash-result label {
+            font-weight: bold;
+            color: var(--text-secondary);
+            width: 80px;
+        }
+        .hash-result input {
+            flex: 1;
+            background: transparent;
             border: none;
+            color: var(--text-primary);
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        .hash-result input:focus {
+            outline: none;
+            box-shadow: none;
+        }
+        .btn-copy {
+            background: var(--border-color);
+            color: var(--text-primary);
+            border: none;
+            padding: 0.5rem 1rem;
             border-radius: 0.25rem;
             cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: background 0.2s;
         }
-        .color-picker input[type="text"] {
-            flex: 1;
-            padding: 0.75rem;
-            background: var(--bg-color);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 0.25rem;
-            font-family: monospace;
-            text-transform: uppercase;
+        .btn-copy:hover {
+            background: var(--text-secondary);
+            color: var(--bg-color);
         }
-        .preview-box {
-            padding: 3rem;
-            border-radius: 0.5rem;
-            border: 1px solid var(--border-color);
-            text-align: center;
+        .progress-container {
+            display: none;
             margin-bottom: 2rem;
-            transition: all 0.3s;
         }
-        .ratio-display {
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--border-color);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #38bdf8;
+            width: 0%;
+            transition: width 0.1s;
+        }
+        #fileInfo {
             text-align: center;
-            font-size: 3rem;
             font-weight: bold;
-            margin: 2rem 0;
-        }
-        .badges-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-        .badge {
-            padding: 1rem;
-            border-radius: 0.5rem;
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .status-pass {
-            color: #10b981;
-            font-weight: bold;
-        }
-        .status-fail {
-            color: #ef4444;
-            font-weight: bold;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
         }
     </style>
 </head>
@@ -118,67 +130,43 @@
 
     <main class="container">
         <div class="card">
-            <h1>WCAG Color Contrast Checker</h1>
-            <p>Ensure your text is readable and complies with WCAG accessibility standards.</p>
+            <h1>File Checksum / Hasher</h1>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Securely calculate SHA-256 and SHA-512 hashes for any file format directly in your browser. Large files are processed in chunks.</p>
             
-            <div class="contrast-container">
-                <div>
-                    <label style="display:block; margin-bottom: 0.5rem; font-weight: bold;">Foreground Color (Text)</label>
-                    <div class="color-picker">
-                        <input type="color" id="fgColorPicker" value="#ffffff">
-                        <input type="text" id="fgColorText" value="#FFFFFF" maxlength="7">
-                    </div>
+            <div class="hasher-container">
+                <div class="file-upload" id="dropZone">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    <p>Drag & drop any file here, or click to select</p>
+                    <input type="file" id="fileInput" style="display: none;">
                 </div>
-                <div>
-                    <label style="display:block; margin-bottom: 0.5rem; font-weight: bold;">Background Color</label>
-                    <div class="color-picker">
-                        <input type="color" id="bgColorPicker" value="#0b0f19">
-                        <input type="text" id="bgColorText" value="#0B0F19" maxlength="7">
-                    </div>
-                </div>
-            </div>
 
-            <div class="preview-box" id="previewBox">
-                <h2 style="margin: 0; font-size: 2rem;" id="previewTextLarge">Large Text Preview</h2>
-                <p style="margin-top: 1rem; font-size: 1rem;" id="previewTextNormal">This is how normal text will look with the selected contrast.</p>
-            </div>
+                <div id="fileInfo"></div>
 
-            <div class="ratio-display" id="ratioDisplay">
-                Loading...
-            </div>
+                <div class="progress-container" id="progressContainer">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                        <span id="progressText">Calculating hashes...</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
 
-            <div class="badges-grid">
-                <div class="badge">
-                    <div>
-                        <strong>WCAG AA</strong><br>
-                        <small>Normal Text (4.5:1)</small>
+                <div id="resultsContainer" style="display: none;">
+                    <div class="hash-result">
+                        <label>SHA-256</label>
+                        <input type="text" id="sha256Result" readonly>
+                        <button class="btn-copy" onclick="copyHash('sha256Result', this)">Copy</button>
                     </div>
-                    <div id="aaNormalStatus"></div>
-                </div>
-                <div class="badge">
-                    <div>
-                        <strong>WCAG AA</strong><br>
-                        <small>Large Text (3.0:1)</small>
+                    <div class="hash-result">
+                        <label>SHA-512</label>
+                        <input type="text" id="sha512Result" readonly>
+                        <button class="btn-copy" onclick="copyHash('sha512Result', this)">Copy</button>
                     </div>
-                    <div id="aaLargeStatus"></div>
-                </div>
-                <div class="badge">
-                    <div>
-                        <strong>WCAG AAA</strong><br>
-                        <small>Normal Text (7.0:1)</small>
-                    </div>
-                    <div id="aaaNormalStatus"></div>
-                </div>
-                <div class="badge">
-                    <div>
-                        <strong>WCAG AAA</strong><br>
-                        <small>Large Text (4.5:1)</small>
-                    </div>
-                    <div id="aaaLargeStatus"></div>
                 </div>
             </div>
         </div>
-        
+
         <div class="inline-support-card">
             <p>Enjoying this free tool? <a href="https://buymeacoffee.com/webutilityhub" target="_blank" rel="noopener noreferrer">Buy us a coffee ☕</a> to help keep Web Utility Hub fast and ad-free.</p>
         </div>

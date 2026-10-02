@@ -32,14 +32,29 @@
             </a>
             <nav class="main-nav">
                 <a href="index.html" class="active">Home</a>
-                <a href="tools/freelance-hourly-rate/">Hourly Rate</a>
-                <a href="tools/image-compressor-target/">Compressor</a>
-                <a href="tools/json-formatter-validator/">JSON</a>
-                <a href="tools/margin-markup-calculator/">Margin</a>
-                <a href="tools/css-box-shadow-generator/">Shadows</a>
+                <div class="dropdown">
+                    <button class="dropbtn">Tools ▼</button>
+                    <div class="dropdown-content">
+                        <a href="tools/freelance-hourly-rate/">Hourly Rate</a>
+                        <a href="tools/image-compressor-target/">Compressor</a>
+                        <a href="tools/json-formatter-validator/">JSON</a>
+                        <a href="tools/margin-markup-calculator/">Margin</a>
+                        <a href="tools/css-box-shadow-generator/">Shadows</a>
+                        <a href="tools/pdf-merger/">PDF Merger</a>
+                        <a href="tools/text-diff/">Text Diff</a>
+                        <a href="tools/image-converter/">Image Converter</a>
+                        <a href="tools/encoder-decoder/">Encoder/Decoder</a>
+                        <a href="tools/contrast-checker/">Contrast Checker</a>
+                        <a href="tools/exif-remover/">EXIF Stripper</a>
+                        <a href="tools/file-hasher/">File Hasher</a>
+                        <a href="tools/word-counter/">Word Counter</a>
+                        <a href="tools/password-generator/">Password Generator</a>
+                        <a href="tools/csv-json-converter/">CSV/JSON Converter</a>
+                    </div>
+                </div>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
-            <a href="https://buymeacoffee.com/webutilityhub" target="_blank" rel="noopener noreferrer" class="bmc-btn">☕ Support Us</a>
+                <a href="https://buymeacoffee.com/webutilityhub" target="_blank" rel="noopener noreferrer" class="bmc-btn" style="margin-left: auto;">☕ Support Us</a>
             </nav>
         </div>
     </header>
@@ -87,38 +102,73 @@
                 <div class="tool-link-text">Open tool &rarr;</div>
             </a>
 
-            <a href="tools/pdf-merger/" class="card tool-card" data-title="pdf merger reorder">
+            <a href="tools/pdf-merger/" class="card tool-card card-pdf" data-title="pdf merger reorder">
                 <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
                 <h2>PDF Merger & Reorder</h2>
                 <p>Combine and reorder your PDF documents securely in your browser.</p>
                 <div class="tool-link-text">Open tool &rarr;</div>
             </a>
             
-            <a href="tools/text-diff/" class="card tool-card" data-title="text diff compare">
+            <a href="tools/text-diff/" class="card tool-card card-diff" data-title="text diff compare">
                 <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M9 15h6"></path><path d="M12 12v6"></path></svg></div>
                 <h2>Text Diff / Compare</h2>
                 <p>Instantly compare two texts visually. See added and deleted lines.</p>
                 <div class="tool-link-text">Open tool &rarr;</div>
             </a>
 
-            <a href="tools/image-converter/" class="card tool-card" data-title="svg image format converter">
+            <a href="tools/image-converter/" class="card tool-card card-converter" data-title="svg image format converter">
                 <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></div>
                 <h2>SVG & Image Converter</h2>
                 <p>Convert images between SVG, PNG, WebP, and JPEG locally.</p>
                 <div class="tool-link-text">Open tool &rarr;</div>
             </a>
             
-            <a href="tools/encoder-decoder/" class="card tool-card" data-title="base64 url encoder decoder">
+            <a href="tools/encoder-decoder/" class="card tool-card card-encoder" data-title="base64 url encoder decoder">
                 <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div>
                 <h2>Encoder/Decoder</h2>
                 <p>Encode and decode Base64 text, images, and URLs instantly.</p>
                 <div class="tool-link-text">Open tool &rarr;</div>
             </a>
 
-            <a href="tools/contrast-checker/" class="card tool-card" data-title="wcag color contrast checker">
+            <a href="tools/contrast-checker/" class="card tool-card card-contrast" data-title="wcag color contrast checker">
                 <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a10 10 0 0 0 0 20z"></path></svg></div>
                 <h2>Contrast Checker</h2>
                 <p>Calculate WCAG contrast ratio to ensure web accessibility compliance.</p>
+                <div class="tool-link-text">Open tool &rarr;</div>
+            </a>
+            
+            <a href="tools/exif-remover/" class="card tool-card card-exif" data-title="exif metadata stripper viewer">
+                <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+                <h2>EXIF Stripper</h2>
+                <p>View and strip hidden EXIF metadata from your photos locally.</p>
+                <div class="tool-link-text">Open tool &rarr;</div>
+            </a>
+            
+            <a href="tools/file-hasher/" class="card tool-card card-hasher" data-title="file checksum hasher sha256 sha512">
+                <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div>
+                <h2>File Hasher</h2>
+                <p>Calculate secure SHA-256 and SHA-512 hashes for any file.</p>
+                <div class="tool-link-text">Open tool &rarr;</div>
+            </a>
+        
+            <a href="tools/word-counter/" class="card tool-card card-word" data-title="word character text analyzer counter">
+                <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
+                <h2>Word & Text Analyzer</h2>
+                <p>Live word, character, and sentence counter with reading time estimation.</p>
+                <div class="tool-link-text">Open tool &rarr;</div>
+            </a>
+
+            <a href="tools/password-generator/" class="card tool-card card-password" data-title="secure password passphrase generator">
+                <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+                <h2>Password Generator</h2>
+                <p>Generate cryptographically secure passwords and passphrases locally.</p>
+                <div class="tool-link-text">Open tool &rarr;</div>
+            </a>
+
+            <a href="tools/csv-json-converter/" class="card tool-card card-csv" data-title="csv to json data converter">
+                <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div>
+                <h2>CSV & JSON Converter</h2>
+                <p>Instantly convert between CSV and JSON formats locally.</p>
                 <div class="tool-link-text">Open tool &rarr;</div>
             </a>
         </div>

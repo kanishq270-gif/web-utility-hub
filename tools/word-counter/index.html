@@ -3,80 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WCAG Color Contrast Checker | Web Utility Hub</title>
-    <meta name="description" content="Calculate WCAG contrast ratio between foreground and background colors to ensure web accessibility compliance.">
+    <title>Word & Text Analyzer | Web Utility Hub</title>
+    <meta name="description" content="Live word, character, and sentence counter with reading time estimation. 100% client-side text analyzer.">
     <link rel="stylesheet" href="../../style.css">
     <style>
-        .contrast-container {
+        .metrics-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
             margin-bottom: 2rem;
         }
-        @media (max-width: 768px) {
-            .contrast-container {
-                grid-template-columns: 1fr;
-            }
+        .metric-card {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
         }
-        .color-picker {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #38bdf8;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .text-input {
+            width: 100%;
+            min-height: 250px;
+            padding: 1.5rem;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            resize: vertical;
             margin-bottom: 1rem;
         }
-        .color-picker input[type="color"] {
-            width: 50px;
-            height: 50px;
-            padding: 0;
-            border: none;
-            border-radius: 0.25rem;
-            cursor: pointer;
-        }
-        .color-picker input[type="text"] {
-            flex: 1;
-            padding: 0.75rem;
-            background: var(--bg-color);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 0.25rem;
-            font-family: monospace;
-            text-transform: uppercase;
-        }
-        .preview-box {
-            padding: 3rem;
-            border-radius: 0.5rem;
-            border: 1px solid var(--border-color);
-            text-align: center;
-            margin-bottom: 2rem;
-            transition: all 0.3s;
-        }
-        .ratio-display {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: bold;
-            margin: 2rem 0;
-        }
-        .badges-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        .controls {
+            display: flex;
             gap: 1rem;
         }
-        .badge {
-            padding: 1rem;
+        .btn {
+            padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .status-pass {
-            color: #10b981;
             font-weight: bold;
+            cursor: pointer;
+            border: none;
         }
-        .status-fail {
-            color: #ef4444;
-            font-weight: bold;
+        .btn-primary {
+            background: #38bdf8;
+            color: #0f172a;
+        }
+        .btn-secondary {
+            background: var(--border-color);
+            color: var(--text-primary);
         }
     </style>
 </head>
@@ -118,67 +104,40 @@
 
     <main class="container">
         <div class="card">
-            <h1>WCAG Color Contrast Checker</h1>
-            <p>Ensure your text is readable and complies with WCAG accessibility standards.</p>
-            
-            <div class="contrast-container">
-                <div>
-                    <label style="display:block; margin-bottom: 0.5rem; font-weight: bold;">Foreground Color (Text)</label>
-                    <div class="color-picker">
-                        <input type="color" id="fgColorPicker" value="#ffffff">
-                        <input type="text" id="fgColorText" value="#FFFFFF" maxlength="7">
-                    </div>
+            <h1>Word & Text Analyzer</h1>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Real-time text analysis. Your data never leaves your browser.</p>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value" id="wordCount">0</div>
+                    <div class="metric-label">Words</div>
                 </div>
-                <div>
-                    <label style="display:block; margin-bottom: 0.5rem; font-weight: bold;">Background Color</label>
-                    <div class="color-picker">
-                        <input type="color" id="bgColorPicker" value="#0b0f19">
-                        <input type="text" id="bgColorText" value="#0B0F19" maxlength="7">
-                    </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="charCount">0</div>
+                    <div class="metric-label">Characters</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="charNoSpaceCount">0</div>
+                    <div class="metric-label">Chars (No Spaces)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="sentenceCount">0</div>
+                    <div class="metric-label">Sentences</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="readTime">0</div>
+                    <div class="metric-label">Min Read Time</div>
                 </div>
             </div>
 
-            <div class="preview-box" id="previewBox">
-                <h2 style="margin: 0; font-size: 2rem;" id="previewTextLarge">Large Text Preview</h2>
-                <p style="margin-top: 1rem; font-size: 1rem;" id="previewTextNormal">This is how normal text will look with the selected contrast.</p>
-            </div>
+            <textarea class="text-input" id="textInput" placeholder="Start typing or paste your text here..."></textarea>
 
-            <div class="ratio-display" id="ratioDisplay">
-                Loading...
-            </div>
-
-            <div class="badges-grid">
-                <div class="badge">
-                    <div>
-                        <strong>WCAG AA</strong><br>
-                        <small>Normal Text (4.5:1)</small>
-                    </div>
-                    <div id="aaNormalStatus"></div>
-                </div>
-                <div class="badge">
-                    <div>
-                        <strong>WCAG AA</strong><br>
-                        <small>Large Text (3.0:1)</small>
-                    </div>
-                    <div id="aaLargeStatus"></div>
-                </div>
-                <div class="badge">
-                    <div>
-                        <strong>WCAG AAA</strong><br>
-                        <small>Normal Text (7.0:1)</small>
-                    </div>
-                    <div id="aaaNormalStatus"></div>
-                </div>
-                <div class="badge">
-                    <div>
-                        <strong>WCAG AAA</strong><br>
-                        <small>Large Text (4.5:1)</small>
-                    </div>
-                    <div id="aaaLargeStatus"></div>
-                </div>
+            <div class="controls">
+                <button class="btn btn-primary" id="copyBtn">Copy Text</button>
+                <button class="btn btn-secondary" id="clearBtn">Clear</button>
             </div>
         </div>
-        
+
         <div class="inline-support-card">
             <p>Enjoying this free tool? <a href="https://buymeacoffee.com/webutilityhub" target="_blank" rel="noopener noreferrer">Buy us a coffee ☕</a> to help keep Web Utility Hub fast and ad-free.</p>
         </div>
